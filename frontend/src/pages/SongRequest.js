@@ -7,14 +7,13 @@ import LoadingSpinner from '../conponents/LoadingSpinner';
 import { useState } from 'react';
 
 export default function SongRequest() {
-    const { songRequest, skipSong, isConnectionAlive, updateSongRequest } = useRequestQueue()
-    const [isVideoMode, setIsVideoMode] = useState(false)
+    const { songRequest, skipSong, isConnectionAlive, updateSongRequest } = useRequestQueue();
+    const [isVideoMode, setIsVideoMode] = useState(false);
     const handlePlayerButtons = (action) => {
         if (action === 'forward') {
             skipSong();
         }
     }
-
     if(!isConnectionAlive) return (
         <div className='container mx-auto p-8 2xl:max-w-7xl flex flex-col text-center pt-40 gap-8'>
             <LoadingSpinner></LoadingSpinner>
