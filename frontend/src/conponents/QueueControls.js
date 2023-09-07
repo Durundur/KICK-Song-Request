@@ -2,8 +2,10 @@ import TextWithIcon from "./TextWithIcon";
 import AddIcon from './AddIcon';
 import TrashIcon from './TrashIcon';
 import HistoryIcon from './HistoryIcon';
+import ResizeIcon from './../conponents/ResizeIcon';
 
-export default function QueueControls({ songRequest, updateSongRequest }) {
+
+export default function QueueControls({ songRequest, updateSongRequest, updateVideoMode }) {
 
     function getDurationInSeconds(isoDuration) {
         const regex = /^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/;
@@ -53,6 +55,7 @@ export default function QueueControls({ songRequest, updateSongRequest }) {
                 <p>Queue {songRequest?.length} videos - {formatDuration(getQueueDurationInSeconds(songRequest))}</p>
             </div>
             <div className="flex flex-row gap-8">
+                <TextWithIcon onClick={()=>updateVideoMode()}  Icon={ResizeIcon} placeholder={'switch player mode'}></TextWithIcon>
                 <TextWithIcon Icon={AddIcon} placeholder={'add media'}></TextWithIcon>
                 <TextWithIcon Icon={HistoryIcon} placeholder={'history'}></TextWithIcon>
                 <TextWithIcon onClick={() => updateSongRequest([])} Icon={TrashIcon} placeholder={'remove all'}></TextWithIcon>
