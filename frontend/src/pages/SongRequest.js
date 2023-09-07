@@ -28,7 +28,7 @@ export default function SongRequest() {
             <div className='grid grid-cols-5 gap-4 '>
                 <div className='flex flex-col gap-4 col-span-2'>
                     <YoutubePlayer handleRequestEnd={skipSong} videoId={(songRequest[0]?.id)}></YoutubePlayer>
-                    <PlayerButtons handlePlayerButtons={(action) => handlePlayerButtons(action)}></PlayerButtons>
+                    <PlayerButtons handlePlayerButtons={handlePlayerButtons.bind(this)}></PlayerButtons>
                 </div>
                 <div className='flex flex-col col-span-3 justify-between'>
                     <div className='flex flex-col '>
