@@ -1,6 +1,5 @@
-import ForwardIcon from './ForwardIcon';
-import BackwardIcon from './BackwardIcon';
-import TextWithIcon from "./TextWithIcon";
+import {ForwardIcon,BackwardIcon} from './Icons/index';
+import TextWithIcon from './TextWithIcon'
 
 export default function PlayerButtons({handlePlayerButtons}){
     return(

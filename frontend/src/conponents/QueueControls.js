@@ -1,8 +1,5 @@
 import TextWithIcon from "./TextWithIcon";
-import AddIcon from './AddIcon';
-import TrashIcon from './TrashIcon';
-import HistoryIcon from './HistoryIcon';
-import ResizeIcon from './../conponents/ResizeIcon';
+import {AddIcon ,TrashIcon ,HistoryIcon ,ResizeIcon} from './Icons/index' 
 
 
 export default function QueueControls({ songRequest, updateSongRequest, updateVideoMode }) {
