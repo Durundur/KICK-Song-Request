@@ -5,6 +5,7 @@ import QueueControls from './../conponents/QueueControls';
 import useRequestQueue from './../hooks/useRequestQueue';
 import LoadingSpinner from '../conponents/LoadingSpinner';
 import { useState } from 'react';
+import { ModalBox } from '../conponents/ModalBox/ModalBox';
 
 export default function SongRequest() {
     const { songRequest, skipSong, isConnectionAlive, updateSongRequest } = useRequestQueue();
@@ -42,6 +43,7 @@ export default function SongRequest() {
             </div>
             <QueueControls isVideoMode={isVideoMode} updateVideoMode={()=>setIsVideoMode(!isVideoMode)} updateSongRequest={updateSongRequest} songRequest={songRequest}></QueueControls>
             <SongsList songRequest={songRequest}></SongsList>
+            <ModalBox></ModalBox>
         </div>
     )
 }

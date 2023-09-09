@@ -5,5 +5,7 @@ import  {HistoryIcon} from './HistoryIcon';
 import  {ResizeIcon} from './ResizeIcon';
 import  {SettingsIcon} from './SettingsIcon';
 import  {TrashIcon} from './TrashIcon';
+import { SaveIcon } from "./SaveIcon";
+import { CloseIcon } from "./CloseIcon";
 
-export {AddIcon, BackwardIcon, ForwardIcon, HistoryIcon, ResizeIcon, SettingsIcon, TrashIcon}
+export {AddIcon, BackwardIcon, ForwardIcon, HistoryIcon, ResizeIcon, SettingsIcon, TrashIcon, SaveIcon, CloseIcon}

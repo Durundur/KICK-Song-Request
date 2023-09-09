@@ -1,5 +1,6 @@
 import TextWithIcon from "./TextWithIcon";
-import {AddIcon ,TrashIcon ,HistoryIcon ,ResizeIcon} from './Icons/index' 
+import {AddIcon ,TrashIcon ,HistoryIcon ,ResizeIcon, SettingsIcon} from './Icons/index' 
+
 
 
 export default function QueueControls({ songRequest, updateSongRequest, updateVideoMode }) {
@@ -53,6 +54,7 @@ export default function QueueControls({ songRequest, updateSongRequest, updateVi
             </div>
             <div className="flex flex-row gap-8">
                 <TextWithIcon onClick={()=>updateVideoMode()}  Icon={ResizeIcon} placeholder={'switch player mode'}></TextWithIcon>
+                <TextWithIcon Icon={SettingsIcon} placeholder={'request criteria'}></TextWithIcon>
                 <TextWithIcon Icon={AddIcon} placeholder={'add media'}></TextWithIcon>
                 <TextWithIcon Icon={HistoryIcon} placeholder={'history'}></TextWithIcon>
                 <TextWithIcon onClick={() => updateSongRequest([])} Icon={TrashIcon} placeholder={'remove all'}></TextWithIcon>
