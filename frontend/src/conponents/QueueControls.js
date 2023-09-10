@@ -1,26 +1,24 @@
 import TextWithIcon from "./TextWithIcon";
 import {AddIcon ,TrashIcon ,HistoryIcon ,ResizeIcon, SettingsIcon} from './Icons/index' 
 
+export function getDurationInSeconds(isoDuration) {
+    const regex = /^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/;
+    const matches = isoDuration.match(regex);
 
-
-export default function QueueControls({ songRequest, updateSongRequest, updateVideoMode }) {
-
-    function getDurationInSeconds(isoDuration) {
-        const regex = /^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/;
-        const matches = isoDuration.match(regex);
-
-        if (!matches) {
-            throw new Error('Invalid ISO 8601 duration format');
-        }
-
-        const [, hours, minutes, seconds] = matches;
-
-        return (
-            (hours ? parseInt(hours) * 3600 : 0) +
-            (minutes ? parseInt(minutes) * 60 : 0) +
-            (seconds ? parseInt(seconds) : 0)
-        );
+    if (!matches) {
+        throw new Error('Invalid ISO 8601 duration format');
     }
+
+    const [, hours, minutes, seconds] = matches;
+
+    return (
+        (hours ? parseInt(hours) * 3600 : 0) +
+        (minutes ? parseInt(minutes) * 60 : 0) +
+        (seconds ? parseInt(seconds) : 0)
+    );
+}
+
+export function QueueControls({ songRequest, updateSongRequest, updateVideoMode, setIsCriteriaSettingsOpen }) {
 
     function getQueueDurationInSeconds(songRequest) {
         return songRequest.reduce((totalDuration, song) => totalDuration + getDurationInSeconds(song?.contentDetails?.duration), 0);
@@ -54,9 +52,9 @@ export default function QueueControls({ songRequest, updateSongRequest, updateVi
             </div>
             <div className="flex flex-row gap-8">
                 <TextWithIcon onClick={()=>updateVideoMode()}  Icon={ResizeIcon} placeholder={'switch player mode'}></TextWithIcon>
-                <TextWithIcon Icon={SettingsIcon} placeholder={'request criteria'}></TextWithIcon>
-                <TextWithIcon Icon={AddIcon} placeholder={'add media'}></TextWithIcon>
-                <TextWithIcon Icon={HistoryIcon} placeholder={'history'}></TextWithIcon>
+                <TextWithIcon Icon={SettingsIcon} onClick={()=>setIsCriteriaSettingsOpen(true)} placeholder={'request criteria'}></TextWithIcon>
+                {/* <TextWithIcon Icon={AddIcon} placeholder={'add media'}></TextWithIcon>
+                <TextWithIcon Icon={HistoryIcon} placeholder={'history'}></TextWithIcon> */}
                 <TextWithIcon onClick={() => updateSongRequest([])} Icon={TrashIcon} placeholder={'remove all'}></TextWithIcon>
             </div>
         </div>

@@ -1,20 +1,25 @@
 import YoutubePlayer from './../conponents/YoutubePlayer';
 import PlayerButtons from '../conponents/PlayerButtons';
 import SongsList from '../conponents/SongsList';
-import QueueControls from './../conponents/QueueControls';
+import {QueueControls} from './../conponents/QueueControls';
 import useRequestQueue from './../hooks/useRequestQueue';
 import LoadingSpinner from '../conponents/LoadingSpinner';
 import { useState } from 'react';
 import { ModalBox } from '../conponents/ModalBox/ModalBox';
+import { RequestCriteria } from '../conponents/RequestCriteria/RequestCriteria';
+
 
 export default function SongRequest() {
-    const { songRequest, skipSong, isConnectionAlive, updateSongRequest } = useRequestQueue();
+    const { songRequest, skipSong, isConnectionAlive, updateSongRequest, requestCriteriaSettings, setRequestCriteriaSettings  } = useRequestQueue();
     const [isVideoMode, setIsVideoMode] = useState(false);
+    const [isCriteriaSettingsOpen, setIsCriteriaSettingsOpen] = useState(false)
+
     const handlePlayerButtons = (action) => {
         if (action === 'forward') {
             skipSong();
         }
     }
+
     if(!isConnectionAlive) return (
         <div className='container mx-auto p-8 2xl:max-w-7xl flex flex-col text-center pt-40 gap-8'>
             <LoadingSpinner></LoadingSpinner>
@@ -26,8 +31,8 @@ export default function SongRequest() {
         </div>)
     return (
         <div className='container mx-auto p-8 2xl:max-w-7xl'>
-            <div className='grid grid-cols-5 gap-4 '>
-                <div className={`flex flex-col gap-4 col-span-${isVideoMode ? 5 : 2}`}>
+            <div className='grid grid-cols-5 gap-4'>
+                <div className={`flex flex-col gap-4 col-span-${isVideoMode===true ? 5 : 2}`}>
                     <YoutubePlayer isVideoMode={isVideoMode} handleRequestEnd={skipSong} videoId={(songRequest[0]?.id)}></YoutubePlayer>
                     <PlayerButtons handlePlayerButtons={handlePlayerButtons.bind(this)}></PlayerButtons>
                 </div>
@@ -41,9 +46,11 @@ export default function SongRequest() {
                     <p className='text-secondaryTextColor'>{`Added by: ${songRequest[0]?.requester}`}</p>
                 </div>
             </div>
-            <QueueControls isVideoMode={isVideoMode} updateVideoMode={()=>setIsVideoMode(!isVideoMode)} updateSongRequest={updateSongRequest} songRequest={songRequest}></QueueControls>
+            <QueueControls setIsCriteriaSettingsOpen={(visibility)=>setIsCriteriaSettingsOpen(visibility)}  isVideoMode={isVideoMode} updateVideoMode={()=>setIsVideoMode(!isVideoMode)} updateSongRequest={updateSongRequest} songRequest={songRequest}></QueueControls>
             <SongsList songRequest={songRequest}></SongsList>
-            <ModalBox></ModalBox>
+            <ModalBox isVisible={isCriteriaSettingsOpen} updateIsVisible={(state)=>setIsCriteriaSettingsOpen(state)}>
+                <RequestCriteria updateIsVisible={(state)=>setIsCriteriaSettingsOpen(state)} requestCriteriaSettings={requestCriteriaSettings} setRequestCriteriaSettings={setRequestCriteriaSettings}/>
+            </ModalBox>
         </div>
     )
 }
