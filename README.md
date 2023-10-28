@@ -3,7 +3,7 @@
  Song/Video request for kick.com - streaming platform. Works locally, temporary application until the public API is available
 
 Instruction: 
-- Download release
+- Download release from https://github.com/Durundur/Kick-Song-Request/releases
 - Unzipp downloaded file
 - Open `StartSr.bat`
 - Follow instructions in command line
