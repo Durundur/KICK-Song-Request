@@ -9,3 +9,9 @@ Instruction:
 - Follow instructions in command line
 
 To add request type on chat: `!sr add [link to youtube]`
+
+
+
+https://github.com/Durundur/Kick-Song-Request/assets/59223321/85444d23-fa8f-4ccf-863f-b545eb4e3a80
+
+
